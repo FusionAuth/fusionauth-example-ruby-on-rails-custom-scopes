@@ -1,0 +1,278 @@
+{
+  "variables": {
+    "allowedOrigin": "http://localhost:3000",
+    "authorizedRedirectURL": "http://localhost:3000/auth/fusionauth/callback",
+    "authorizedOriginURL": "http://localhost:3000",
+    "logoutURL": "http://localhost:3000/get_balance",
+    "applicationId": "e9fdb985-9173-4e01-9d73-ac2d60d1dc8e",
+    "applicationIdBudgetBuddy": "4581ddb2-0b8b-41e5-8c5d-e2a44f107905",
+    "apiKey": "this_really_should_be_a_long_random_alphanumeric_value_but_this_still_works",
+    "asymmetricKeyId": "#{UUID()}",
+    "newThemeId": "#{UUID()}",
+    "defaultTenantId": "d7d09513-a3f5-401c-9685-34ab6c552453",
+    "adminEmail": "admin@example.com",
+    "adminPassword": "password",
+    "tellerEmail": "teller@example.com",
+    "tellerPassword": "password",
+    "tellerUserId": "00000000-0000-0000-0000-111111111111",
+    "customerEmail": "customer@example.com",
+    "customerPassword": "password",
+    "customerUserId": "00000000-0000-0000-0000-222222222222"
+  },
+  "apiKeys": [
+    {
+      "key": "#{apiKey}",
+      "description": "Unrestricted API key"
+    }
+  ],
+  "requests": [
+    {
+      "method": "PATCH",
+      "url": "/api/tenant/#{defaultTenantId}",
+      "body": {
+        "tenant": {
+          "issuer": "http://localhost:9011"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/key/generate/#{asymmetricKeyId}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "key": {
+          "algorithm": "RS256",
+          "name": "For exampleapp",
+          "length": 2048
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration",
+      "body": {
+        "user": {
+          "email": "#{adminEmail}",
+          "password": "#{adminPassword}"
+        },
+        "registration": {
+          "applicationId": "#{FUSIONAUTH_APPLICATION_ID}",
+          "roles": [
+            "admin"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/application/#{applicationId}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "application": {
+          "name": "Example app",
+          "oauthConfiguration": {
+            "authorizedRedirectURLs": [],
+            "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
+            "logoutURL": "http://localhost:8080/logout",
+            "enabledGrants": [
+              "authorization_code",
+              "refresh_token"
+            ],
+            "proofKeyForCodeExchangePolicy": "Required"
+          },
+          "jwtConfiguration": {
+            "enabled": true,
+            "accessTokenKeyId": "#{asymmetricKeyId}",
+            "idTokenKeyId": "#{asymmetricKeyId}"
+          },
+          "registrationConfiguration": {
+            "birthDate": {
+              "enabled": false,
+              "required": false
+            },
+            "confirmPassword": false,
+            "enabled": true,
+            "firstName": {
+              "enabled": false,
+              "required": false
+            },
+            "fullName": {
+              "enabled": true,
+              "required": true
+            },
+            "lastName": {
+              "enabled": false,
+              "required": false
+            },
+            "loginIdType": "email",
+            "middleName": {
+              "enabled": false,
+              "required": false
+            },
+            "mobilePhone": {
+              "enabled": false,
+              "required": false
+            },
+            "type": "basic"
+          },
+          "roles": [
+            {
+              "name": "teller"
+            },
+            {
+              "name": "customer"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/application/#{applicationIdBudgetBuddy}",
+      "tenantId": "#{defaultTenantId}",
+      "body": {
+        "application": {
+          "name": "Budget Buddy",
+          "oauthConfiguration": {
+            "authorizedRedirectURLs": [
+              "#{authorizedRedirectURL}"
+            ],
+            "authorizedOriginURLs": [
+              "#{authorizedOriginURL}"
+            ],
+            "clientSecret": "super-secret-secret-that-should-be-regenerated-for-production",
+            "logoutURL": "#{logoutURL}",
+            "enabledGrants": [
+              "authorization_code",
+              "refresh_token"
+            ],
+            "debug": true,
+            "generateRefreshTokens": true,
+            "requireRegistration": false,
+            "relationship": "ThirdParty",
+            "consentMode": "AlwaysPrompt"
+          },
+          "jwtConfiguration": {
+            "enabled": true,
+            "accessTokenKeyId": "#{asymmetricKeyId}",
+            "idTokenKeyId": "#{asymmetricKeyId}"
+          },
+          "registrationConfiguration": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{tellerUserId}",
+      "body": {
+        "user": {
+          "birthDate": "1985-11-23",
+          "email": "#{tellerEmail}",
+          "firstName": "Tammy",
+          "lastName": "Teller",
+          "fullName": "Tammy Teller",
+          "password": "#{tellerPassword}"
+        },
+        "registration": {
+          "applicationId": "#{applicationId}",
+          "roles": [
+            "teller"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/user/registration/#{customerUserId}",
+      "body": {
+        "user": {
+          "birthDate": "1985-11-23",
+          "email": "#{customerEmail}",
+          "firstName": "Charlie",
+          "lastName": "Customer",
+          "fullName": "Charlie Customer",
+          "password": "#{customerPassword}"
+        },
+        "registration": {
+          "applicationId": "#{applicationId}",
+          "roles": [
+            "customer"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/theme/#{newThemeId}",
+      "body": {
+        "sourceThemeId": "75a068fd-e94b-451a-9aeb-3ddb9a3b5987",
+        "theme": {
+          "name": "Changebank theme"
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/theme/#{newThemeId}",
+      "body": {
+        "theme": {
+          "stylesheet": "@{css/styles.css}"
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/tenant/#{defaultTenantId}",
+      "body": {
+        "tenant": {
+          "themeId": "#{newThemeId}"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/application/#{applicationIdBudgetBuddy}/scope",
+      "body": {
+        "scope": {
+          "defaultConsentMessage": "Allow Budget Buddy to read your Change Bank balance.",
+          "description": "Read Change Bank balance.",
+          "name": "balance:read",
+          "required": false
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "url": "/api/system-configuration",
+      "body": {
+        "systemConfiguration": {
+          "corsConfiguration": {
+            "allowCredentials": true,
+            "allowedHeaders": [
+              "Accept",
+              "Access-Control-Request-Headers",
+              "Access-Control-Request-Method",
+              "Authorization",
+              "Content-Type",
+              "Last-Modified",
+              "Origin",
+              "X-FusionAuth-TenantId",
+              "X-Requested-With"
+            ],
+            "allowedMethods": [
+              "GET",
+              "POST"
+            ],
+            "allowedOrigins": [
+              "http://localhost:3000",
+              "http://localhost:4001"
+            ],
+            "enabled": true
+          }
+        }
+      }
+    }
+  ]
+}

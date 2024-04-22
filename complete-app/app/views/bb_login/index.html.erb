@@ -1,0 +1,16 @@
+<h1>Login To Budget Buddy</h1>
+<br/>
+<%= form_with url: "/bb_login", method: :get do |form| %>
+  <%= form.text_field :user_email, placeholder:"Email", :autofocus=>true %>
+  <br/>
+  <br/>
+  <%= form.password_field :user_password, placeholder:"Password", :autofocus=>true %>
+  <br/>
+  <br/>
+  <%= form.submit "Login" %>
+<% end %>
+<br/>
+<br/>
+*This simulates a login to an identity provider other than you're FusionAuth instance.
+<br/>
+(In this case, a terrible solution accepting any value for an email.)

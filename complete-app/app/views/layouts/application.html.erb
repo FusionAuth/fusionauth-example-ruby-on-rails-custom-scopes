@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FusionAuth OpenID example</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "budgetbuddy", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <%# tag::applicationLayout[] %>
+  <div id="page-container">
+    <div id="page-header">
+      <div id="logo-header">
+        <%= image_tag "budget_buddy_logo.svg", class:"headerImage"%>
+
+        <% if !session[:bb_user] %>
+          
+        <% else %>
+          <%= session[:bb_user]["email"] %>
+          &nbsp;
+          <%= button_to "Logout", '/bb_logout', method:'get', class:'button-lg' %>
+        <% end %>
+      </div>
+
+      <div id="menu-bar" class="menu-bar">
+        <% if session[:bb_user] %>
+          <a href="/" class="menu-link">Account</a>
+          <a href="/balance_budget" class="menu-link">Balance Budget</a>
+          <a href="/get_balance" class="menu-link">Get Balance</a>
+        <% else %>
+          <a href="/" class="menu-link">Home</a>
+        <% end %>
+      </div>
+    </div>
+
+    <div style="flex: 1;">
+      <div class="column-container">
+        <div class="content-container">
+
+          <%= yield %>
+
+        </div>
+        <% if !session[:bb_user] %>
+          <div style="flex: 0;">
+            <%= image_tag "budget_buddy_bg.jpeg", style:"max-width: 800px;"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+<%# end::applicationLayout[] %>
+  </body>
+</html>

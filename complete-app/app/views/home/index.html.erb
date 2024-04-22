@@ -1,0 +1,5 @@
+<% if !session[:bb_user] %>
+  <h1>Login to manage your account</h1>
+<% else %>
+  <h1>Welcome <%= session[:bb_user]["email"] %>!</h1>
+<% end %>

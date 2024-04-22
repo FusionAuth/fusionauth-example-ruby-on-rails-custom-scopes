@@ -1,0 +1,7 @@
+.headerImage {
+    width: 257px;
+    height: 55px;
+    object-fit: contain;
+    padding: 5px 16px 16px 16px;
+    display: block;
+}

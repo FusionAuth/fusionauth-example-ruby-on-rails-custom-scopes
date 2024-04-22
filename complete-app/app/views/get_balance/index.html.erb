@@ -1,0 +1,21 @@
+<h1>Change Bank Balance</h1>
+<br/>
+
+ <% if !session[:user] %>
+  Allow Budget Buddy would like access to your Change Bank account.
+  <br/>
+  <br/>
+  <%= form_tag('/auth/fusionauth', method: 'post', data: {turbo: false}) do %>
+    <button type='submit' class='button-lg'>Connect</button>
+  <% end %>
+<% else %>
+  <%= button_to "Disconnect", '/logout', method:'get', class:'button-lg' %>
+  <br/>
+  <% if @success  %>
+    Your account balance is <%= @balance %>.
+  <% else %>
+    The attempt to retreive your balance from change bank has failed with message: <%= @response_message %>
+    <br>
+    Please disconnect and retry making sure to grant the appropiate scopes.
+  <% end %>
+<% end %>
