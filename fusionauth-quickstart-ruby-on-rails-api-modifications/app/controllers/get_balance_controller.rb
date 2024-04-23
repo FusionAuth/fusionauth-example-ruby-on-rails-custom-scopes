@@ -10,7 +10,7 @@ class GetBalanceController < ApplicationController
     success = false
     message = nil
 
-    #Do we need to Introspect Token or is jwt_rack validation enough
+    # Could use introspection against FusionAuth server to further validate token 
     if !jwt_payload.blank?
         if (aud == ENV['BUDGET_BUDDY_CLIENT_ID'])
           if scopes.include?('balance:read')
