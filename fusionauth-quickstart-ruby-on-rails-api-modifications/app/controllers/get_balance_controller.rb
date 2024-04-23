@@ -14,7 +14,7 @@ class GetBalanceController < ApplicationController
     if !jwt_payload.blank?
         if (aud == ENV['BUDGET_BUDDY_CLIENT_ID'])
           if scopes.include?('balance:read')
-            #This is hwere you would use the change_bank_user_id to look up their balance
+            # This is hwere you would use the change_bank_user_id to look up their balance
             balance = "$100.32"
             success = true
           else
