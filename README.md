@@ -48,11 +48,11 @@ Do not run the `docker copose up -d` from the instructions in api application.
 
 Update the following files in the API Quickstart with the values from the files in this repositories `fusionauth-quickstart-ruby-on-rails-api-modifications` folder.
 
-| Replace | With |
+| Copy | To |
 | :----------------------------------------------------------------------------- |:------------------------------------ |
-| fusionauth-quickstart-ruby-on-rails/complete-application/app/controllers/get_balance_controller.rb | fusionauth-example-ruby-on-rails-custom-scopes/app/controllers/get_balance_controller.rb |
-| fusionauth-quickstart-ruby-on-rails/complete-application/config/routes.rb | fusionauth-example-ruby-on-rails-custom-scopes//config/routes.rb |
-| fusionauth-quickstart-ruby-on-rails/complete-application/config/initializers/jwt_rack.rb | fusionauth-example-ruby-on-rails-custom-scopes/config/initializers/jwt_rack.rb |
+| fusionauth-example-ruby-on-rails-custom-scopes/app/controllers/get_balance_controller.rb | fusionauth-quickstart-ruby-on-rails/complete-application/app/controllers/get_balance_controller.rb |
+| fusionauth-example-ruby-on-rails-custom-scopes/config/routes.rb | fusionauth-quickstart-ruby-on-rails/complete-application/config/routes.rb |
+| fusionauth-example-ruby-on-rails-custom-scopes/config/initializers/jwt_rack.rb | fusionauth-quickstart-ruby-on-rails/complete-application/config/initializers/jwt_rack.rb |
 
 These changes will provide the Change Bank API with the Budget Buddy application settings and create a new endpoint for the api named `get_balance`.
 
