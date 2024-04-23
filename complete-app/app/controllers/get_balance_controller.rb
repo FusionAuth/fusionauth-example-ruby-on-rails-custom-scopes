@@ -28,7 +28,6 @@ class GetBalanceController < ApplicationController
                     response = http.request(request)
 
                     @response = response.body
-                    #if valid response then good
                     json_response = @response
                     @parsed_response = JSON.parse(json_response)
                     @balance = @parsed_response["balance"]
@@ -36,7 +35,6 @@ class GetBalanceController < ApplicationController
                     @success = @parsed_response["success"]
                     @example_token = @parsed_response["example_token"]
                     @jwt_payload = @parsed_response["jwt"]
-                    #@balance = 2
                else
                     @jwt = "empty"
                end
