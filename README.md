@@ -56,7 +56,7 @@ Update the following files in the API Quickstart with the values from the files 
 
 These changes will provide the Change Bank API with the Budget Buddy application settings and create a new endpoint for the api named `get_balance`.
 
-From the `fusionauth-quickstart-ruby-on-rails/complete-application` directory, install the dependencies and run via the Gemfile.
+From a terminal window in the `fusionauth-quickstart-ruby-on-rails/complete-application` directory, install the dependencies and run via the Gemfile.
 ```
 cd complete-application
 bundle install
@@ -67,7 +67,7 @@ bundle e rails s -p 4001
 
 The `complete-app` directory for this repository contains a minimal Ruby on Rails app called Budget Buddy. This is a simple app and contains no real functionality. The basic login will accept any email that is not blank. This is simply to convey the idea of login into any system that is not the Change Bank application on the FusionAuth host.
 
-Install gems and run the Rails server with:
+From a new terminal window in the `fusionauth-example-ruby-on-rails-custom-scopes/complete-application` directory, install the dependencies and run via the Gemfile.
 ```
 cd complete-app
 bundle install
