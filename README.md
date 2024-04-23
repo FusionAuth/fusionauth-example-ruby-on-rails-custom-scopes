@@ -56,7 +56,7 @@ Update the following files in the API Quickstart with the values from the files 
 
 These changes will provide the Change Bank API with the Budget Buddy application settings and create a new endpoint for the api named `get_balance`.
 
-From the `complete-application` directory, install the dependencies and run via the Gemfile.
+From the `fusionauth-quickstart-ruby-on-rails/complete-application` directory, install the dependencies and run via the Gemfile.
 ```
 cd complete-application
 bundle install
