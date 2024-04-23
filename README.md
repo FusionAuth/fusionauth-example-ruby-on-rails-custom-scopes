@@ -46,7 +46,7 @@ You will need to clone the FusionAuth Ruby on Rails API Quickstart at [https://g
 
 Do not run the `docker copose up -d` from the instructions in api application. 
 
-Update the following files in the API Quickstart with the values from the files in this repositories `fusionauth-quickstart-ruby-on-rails-api-modifications` folder.
+Update the following files in the API Quickstart with the values from the files in this repositories `fusionauth-quickstart-ruby-on-rails-api-modifications` directory.
 
 | Copy | To |
 | :----------------------------------------------------------------------------- |:------------------------------------ |
