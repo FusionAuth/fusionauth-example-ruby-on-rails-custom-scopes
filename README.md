@@ -18,12 +18,12 @@ This app has been tested with Ruby 3.2.2 and Rails 7.0.4.3
 The root of this project directory (next to this README) are two files [a Docker compose file](./docker-compose.yml) and an [environment variables configuration file](./.env). Assuming you have Docker installed on your machine, you can stand up FusionAuth up on your machine with:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 The FusionAuth configuration files also make use of a unique feature of FusionAuth, called [Kickstart](https://fusionauth.io/docs/v1/tech/installation-guide/kickstart): when FusionAuth comes up for the first time, it will look at the [Kickstart file](./kickstart/kickstart.json) and mimic API calls to configure FusionAuth for use when it is first run. 
 
-> **NOTE**: If you ever want to reset the FusionAuth system, delete the volumes created by docker-compose by executing `docker-compose down -v`. 
+> **NOTE**: If you ever want to reset the FusionAuth system, delete the volumes created by docker compose by executing `docker compose down -v`. 
 
 FusionAuth will be initially configured with two applications.  The first will be the Example App with these settings:
 
@@ -47,7 +47,7 @@ You will need to clone the FusionAuth Ruby on Rails API Quickstart at [https://g
 
 Do not run the `docker copose up -d` from the instructions in api application. 
 
-Update the following files in the API Quickstart with the values from the files in this repositories `fusionauth-quickstart-ruby-on-rails-api-modifications` directory.
+Update the following files in the API Quickstart with the values from the files in this repository directory `fusionauth-quickstart-ruby-on-rails-api-modifications`.
 
 | Copy | To |
 | :----------------------------------------------------------------------------- |:------------------------------------ |
@@ -58,7 +58,7 @@ Update the following files in the API Quickstart with the values from the files 
 
 These changes will provide the Change Bank API with the Budget Buddy application settings and create a new endpoint for the api named `get_balance`.
 
-From a terminal window in the `fusionauth-quickstart-ruby-on-rails/complete-application` directory, install the dependencies and run via the Gemfile.
+From a terminal window in the `fusionauth-quickstart-ruby-on-rails-api/complete-application` directory, install the dependencies and run via the Gemfile.
 ```
 cd complete-application
 bundle install
@@ -93,7 +93,7 @@ Visit https://fusionauth.io/quickstarts/quickstart-ruby-rails-web for a step by 
 
 ### Troubleshooting
 
-* I get `This site can’t be reached  localhost refused to connect.` when I click the Login button
+* I get `This site can’t be reached localhost refused to connect.` when I click the Login button
 
 Ensure FusionAuth is running in the Docker container.  You should be able to login as the admin user, `admin@example.com` with the password of `password` at http://localhost:9011/admin
 
@@ -108,4 +108,4 @@ Rack::OAuth2::Client::Error
 invalid_client :: Invalid client authentication credentials.
 ```
 
-This indicates that Omniauth is unable to call FusionAuth to validate the returned token.  It is likely caused my not supplying the correct *client secret*.  Ensure the `OP_SECRET_KEY` used to start rails matches the FusionAuth ExampleApp client secret.  http://localhost:9011/admin/application/
+This indicates that Omniauth is unable to call FusionAuth to validate the returned token.  It is likely caused not supplying the correct *client secret*.  Ensure the `OP_SECRET_KEY` used to start rails matches the FusionAuth ExampleApp client secret.  http://localhost:9011/admin/application/
