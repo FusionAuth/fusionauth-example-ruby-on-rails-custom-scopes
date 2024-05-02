@@ -17,7 +17,8 @@
     "tellerUserId": "00000000-0000-0000-0000-111111111111",
     "customerEmail": "customer@example.com",
     "customerPassword": "password",
-    "customerUserId": "00000000-0000-0000-0000-222222222222"
+    "customerUserId": "00000000-0000-0000-0000-222222222222",
+    "licenseId": "REPLACE_THIS_WITH_VALID_KEY"
   },
   "apiKeys": [
     {
@@ -61,6 +62,13 @@
             "admin"
           ]
         }
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/api/reactor",
+      "body": {
+        "licenseId": "#{licenseId}"
       }
     },
     {
