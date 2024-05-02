@@ -2,13 +2,15 @@
 
 This repository contains a Ruby on Rails app that works with a locally running instance of [FusionAuth](https://fusionauth.io/), the authentication and authorization platform.
 
+**Please note that this feature is only available in an Essentials or Enterprise plan. You can visit the pricing page to learn more. You will need to edit the value of the `licenseId` in the kickstart.json with a valid license key to run this example. Please visit the [pricing page](https://fusionauth.io/pricing) to learn more. **
+
 ## Setup
 
 ### Prerequisites
 - [Ruby](https://www.ruby-lang.org/en/documentation/installation/): This will be needed for pulling down the various dependencies.
 - [Rails](https://guides.rubyonrails.org/getting_started.html): This will be used in order to run the Rails server.
 - [Docker](https://www.docker.com): The quickest way to stand up FusionAuth.
-  - You wil need FusionAuth 1.50.0 or greater.
+  - You will need FusionAuth 1.50.0 or greater.
   - (Alternatively, you can [Install FusionAuth Manually](https://fusionauth.io/docs/v1/tech/installation-guide/)).
 
 This app has been tested with Ruby 3.2.2 and Rails 7.0.4.3
