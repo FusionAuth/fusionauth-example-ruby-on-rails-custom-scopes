@@ -2,7 +2,7 @@
 
 This repository contains a Ruby on Rails app that works with a locally running instance of [FusionAuth](https://fusionauth.io/), the authentication and authorization platform.
 
-**Please note that this feature is only available in an Essentials or Enterprise plan. You can visit the pricing page to learn more. You will need to edit the value of the `licenseId` in the kickstart.json with a valid license key to run this example. Please visit the [pricing page](https://fusionauth.io/pricing) to learn more. **
+**Please note that the custom scope feature is only available in an Essentials or Enterprise plan. You can visit the pricing page to learn more. You will need to edit the value of the `licenseId` in the kickstart.json with a valid license key to run this example. Please visit the [pricing page](https://fusionauth.io/pricing) to learn more.**
 
 ## Setup
 
